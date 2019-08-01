@@ -1,0 +1,7 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [true, "attribute", "angularNest", "camelCase"],
+    "component-selector": [true, "element", "angular-nest", "kebab-case"]
+  }
+}
