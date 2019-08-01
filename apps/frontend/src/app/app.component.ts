@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 import { Observable } from 'rxjs';
 
@@ -7,13 +7,18 @@ import { Todo } from '@angular-nest/data';
 
 @Component({
   selector: 'angular-nest-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  template: `
+    <router-outlet></router-outlet>
+  `,
 })
 export class AppComponent {
   todos: Observable<Todo[]>;
 
-  constructor(http: HttpClient) {
-    this.todos = http.get<Todo[]>('/api/todos');
+  constructor(translate: TranslateService) {
+    translate.addLangs(['es', 'en']);
+    translate.setDefaultLang('es');
+
+    const browserLang: string = translate.getBrowserLang();
+    translate.use(browserLang.match(/es|en/) ? browserLang : 'es');
   }
 }

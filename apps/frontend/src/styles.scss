@@ -1,1 +1,17 @@
+@import 'scss/material.variables';
+@import 'scss/material.themes';
+@import 'scss/mixins/bi-app/bi-app-ltr';
+
+// Core Variables and Mixins
+@import 'scss/app.variables';
+@import 'scss/mixins';
+
+// Core Styles
+@import 'scss/core';
+@import 'scss/material';
+@import 'scss/utilities/utilities';
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

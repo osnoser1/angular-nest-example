@@ -1,0 +1,58 @@
+<mat-nav-list appAccordion class="navigation">
+  <ng-container *ngFor="let menuitem of menuService.getAll()">
+    <mat-list-item appAccordionLink group="{{ menuitem.state }}">
+      <a
+        appAccordionToggle
+        class="relative"
+        [routerLink]="menuitem.state"
+        *ngIf="menuitem.type === 'link'"
+      >
+        <mat-icon>{{ menuitem.icon }}</mat-icon>
+        <span>{{ menuitem.name | translate }}</span> <span fxFlex></span>
+        <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{
+          badge.value
+        }}</span>
+      </a>
+      <a
+        appAccordionToggle
+        class="relative"
+        href="{{ menuitem.state }}"
+        *ngIf="menuitem.type === 'extLink'"
+      >
+        <mat-icon>{{ menuitem.icon }}</mat-icon>
+        <span>{{ menuitem.name | translate }}</span> <span fxFlex></span>
+        <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{
+          badge.value
+        }}</span>
+      </a>
+      <a
+        appAccordionToggle
+        class="relative"
+        href="{{ menuitem.state }}"
+        target="_blank"
+        *ngIf="menuitem.type === 'extTabLink'"
+      >
+        <mat-icon>{{ menuitem.icon }}</mat-icon>
+        <span>{{ menuitem.name | translate }}</span> <span fxFlex></span>
+        <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{
+          badge.value
+        }}</span>
+      </a>
+      <a appAccordionToggle class="relative" href="javascript:;" *ngIf="menuitem.type === 'sub'">
+        <mat-icon>{{ menuitem.icon }}</mat-icon>
+        <span>{{ menuitem.name | translate }}</span> <span fxFlex></span>
+        <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{
+          badge.value
+        }}</span>
+        <mat-icon class="menu-caret">arrow_drop_down</mat-icon>
+      </a>
+      <mat-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
+        <ng-container *ngFor="let childitem of menuitem.children">
+          <mat-list-item routerLinkActive="open">
+            <a [routerLink]="childitem.state" class="relative">{{ childitem.name }}</a>
+          </mat-list-item>
+        </ng-container>
+      </mat-nav-list>
+    </mat-list-item>
+  </ng-container>
+</mat-nav-list>

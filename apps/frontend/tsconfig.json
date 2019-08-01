@@ -1,6 +1,11 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "paths": {
+      "@angular-nest/data": ["libs/data/src/index.ts"],
+      "@app/*": ["apps/frontend/src/app/*"],
+      "@env/*": ["apps/frontend/src/environments/*"]
+    },
     "types": ["node", "jest"]
   },
   "include": ["**/*.ts"]
