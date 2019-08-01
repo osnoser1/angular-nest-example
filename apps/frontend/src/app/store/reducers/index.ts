@@ -16,6 +16,7 @@ import {
 import { storeFreeze } from 'ngrx-store-freeze';
 
 import { environment } from '@env/environment';
+import * as fromError from './global-error.reducer';
 
 export interface RouterStateUrl {
   url: string;
@@ -25,6 +26,7 @@ export interface RouterStateUrl {
 
 export interface State {
   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
+  errors: fromError.ErrorState;
 }
 
 export const ROOT_REDUCERS = new InjectionToken<
@@ -32,12 +34,15 @@ export const ROOT_REDUCERS = new InjectionToken<
 >('Root reducers token', {
   factory: () => ({
     routerReducer: fromRouter.routerReducer,
+    errors: fromError.reducer,
   }),
 });
 
 export const getRouterState = createFeatureSelector<
   fromRouter.RouterReducerState<RouterStateUrl>
 >('routerReducer');
+
+export const getErrorsState = createFeatureSelector<fromError.ErrorState>('errors');
 
 export class CustomSerializer
   implements fromRouter.RouterStateSerializer<RouterStateUrl> {
