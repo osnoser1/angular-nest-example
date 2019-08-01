@@ -1,0 +1,28 @@
+.app-progress-button {
+  .mat-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mat-progress-spinner {
+    position: absolute;
+    top: 25%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .button-text {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &.active {
+    cursor: not-allowed;
+
+    .mat-progress-spinner {
+      opacity: 1;
+    }
+    .button-text {
+      opacity: 0;
+    }
+  }
+}

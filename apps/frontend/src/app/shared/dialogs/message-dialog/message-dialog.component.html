@@ -1,0 +1,22 @@
+<h3 class="mt-0 text-center" *ngIf="title">{{ title | translate }}</h3>
+<p
+  *ngIf="options?.htmlMessage; else plainText"
+  class="text-center mat-body mat-text-muted"
+  [innerHTML]="message | translate | sanitizeHtml"
+></p>
+<ng-template #plainText>
+  <p class="text-center mat-body mat-text-muted">{{ message | translate }}</p>
+</ng-template>
+<div fxLayout fxLayoutAlign="center">
+  <button color="primary" mat-raised-button type="button" (click)="onClick('accept')" class="mr-1">
+    {{ 'BUTTON_ACTIONS.OK' | translate }}
+  </button>
+  <button
+    *ngIf="type === types.Confirm"
+    mat-stroked-button
+    type="button"
+    (click)="onClick('cancel')"
+  >
+    {{ 'BUTTON_ACTIONS.CANCEL' | translate }}
+  </button>
+</div>
