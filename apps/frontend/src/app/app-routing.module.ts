@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'private/dashboard',
+    redirectTo: 'session/signup',
     pathMatch: 'prefix',
   },
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'session',
     loadChildren: './session/session.module#SessionModule',
   },
-  { path: '**', redirectTo: 'private/dashboard' },
+  { path: '**', redirectTo: 'session/signup' },
 ];
 
 @NgModule({
