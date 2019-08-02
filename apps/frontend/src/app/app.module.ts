@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { EffectsModule } from '@ngrx/effects';
@@ -30,6 +32,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
+registerLocaleData(localeEs);
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -54,7 +58,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     StoreRouterConnectingModule.forRoot(),
   ],
-  providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
+  providers: [
+    { provide: RouterStateSerializer, useClass: CustomSerializer },
+    { provide: LOCALE_ID, useValue: 'es' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
