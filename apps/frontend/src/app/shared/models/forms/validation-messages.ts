@@ -18,6 +18,13 @@ export const Validation = {
   }),
   requiredDate: () => ({ requiredDate: 'VALIDATION.REQUIRED' }),
   invalidDate: () => ({ required: 'VALIDATION.INVALID_NUMBER' }),
+  minYearDiff: (years: number) => () => ({
+    key: 'minYearDiff',
+    value: 'VALIDATION.MIN_YEARS_DIFF',
+    years,
+  }),
+  notFound: () => ({ notFound: 'VALIDATION.NOT_FOUND' }),
+  loading: () => ({ loading: 'VALIDATION.LOADING' }),
 };
 
 const validationFunction = (

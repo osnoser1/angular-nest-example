@@ -27,8 +27,17 @@ export class CustomValidators {
   // Number only validation
   static numeric(float = true) {
     return (control: AbstractControl) => {
-      return typeof control.value !== 'number' ||
-        (!float && Math.trunc(control.value) !== control.value)
+      let value = control.value;
+      if (typeof value !== 'number') {
+        if (/^\d+$/) {
+          value = Number(control.value);
+        } else {
+          return { invalidNumber: true };
+        }
+      }
+
+      return typeof value !== 'number' ||
+        (!float && Math.trunc(value) !== value)
         ? { invalidNumber: true }
         : null;
     };
@@ -41,6 +50,8 @@ export class CustomValidators {
 
   static requiredDate(control: AbstractControl) {
     const nativeElement = (control as any).nativeElement;
-    return !control.value && nativeElement && !nativeElement.value ? { requiredDate: true } : null;
+    return !control.value && nativeElement && !nativeElement.value
+      ? { requiredDate: true }
+      : null;
   }
 }

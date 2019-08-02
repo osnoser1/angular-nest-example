@@ -3,7 +3,29 @@
     "NAME": "Inicio",
     "PAGE": "Página de inicio"
   },
+  "SIGNUP": {
+    "REGISTER": "Registrar",
+    "TITLE": "Registro de cliente",
+    "DOCUMENT": "Identificación",
+    "NAME": "Nombre",
+    "LAST_NAME": "Apellido",
+    "BIRTHDATE": "Fecha de nacimiento"
+  },
+  "VALIDATION": {
+    "REQUIRED": "Campo requerido.",
+    "EMAIL": "El campo debe ser un correo electrónico.",
+    "INVALID_NUMBER": "Campo inválido.",
+    "MIN_LENGTH": "Mínimo {{length}} caracteres.",
+    "MAX_LENGTH": "Máximo {{length}} caracteres.",
+    "GTE": "El valor debe ser mayor o igual a {{val}}.",
+    "GT": "El valor debe ser mayor a {{val}}.",
+    "MIN_YEARS_DIFF": "Debe tener más de {{years}} años.",
+    "NOT_FOUND": "El campo ya se encuentra registrado.",
+    "LOADING": "Comprobando..."
+  },
   "MESSAGES": {
-    "ERROR": "Error, intente nuevamente o contacte al administrador del sistema."
+    "ERROR": "Error, intente nuevamente o contacte al administrador del sistema.",
+    "INVALID_FORM": "Existen campos inválidos. Por favor revise e intente nuevamente.",
+    "REGISTER_ADDED": "Registro de cliente realizado exitosamente."
   }
 }

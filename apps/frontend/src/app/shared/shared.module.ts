@@ -5,7 +5,10 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { MaterialModule } from '@app/material';
 import { MessageDialogComponent } from './dialogs';
-import { ProgressButtonDirective } from './directives';
+import {
+  ProgressButtonDirective,
+  CurrencyFormatterDirective,
+} from './directives';
 import { SanitizeHtmlPipe } from './pipes';
 import { NotificationService } from './services';
 
@@ -14,10 +17,12 @@ import { NotificationService } from './services';
     MessageDialogComponent,
     ProgressButtonDirective,
     SanitizeHtmlPipe,
+    CurrencyFormatterDirective,
   ],
   entryComponents: [MessageDialogComponent],
   exports: [
     CommonModule,
+    CurrencyFormatterDirective,
     MaterialModule,
     ProgressButtonDirective,
     SanitizeHtmlPipe,

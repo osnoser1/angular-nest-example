@@ -1,0 +1,94 @@
+<div class="session mat-indigo">
+  <div class="session-content">
+    <div class="session-wrapper">
+      <mat-card>
+        <mat-card-content>
+          <form class="pa-1" [formGroup]="form.group">
+            <div class="text-xs-center pb-1">
+              <img src="assets/images/logo-dark.png" alt="" />
+              <p class="mat-text-muted" translate>SIGNUP.TITLE</p>
+            </div>
+
+            <div fxLayout="column" fxLayoutAlign="space-around">
+              <mat-form-field class="pt-1">
+                <input
+                  formControlName="document"
+                  matInput
+                  placeholder="{{ 'SIGNUP.DOCUMENT' | translate }}"
+                />
+              </mat-form-field>
+              <small
+                *ngFor="let error of form.getErrors('document')"
+                class="mat-text-warn"
+                >{{ error.msg | translate: error.value }}</small
+              >
+
+              <mat-form-field class="pt-1">
+                <input
+                  matInput
+                  placeholder="{{ 'SIGNUP.NAME' | translate }}"
+                  formControlName="name"
+                  type="text"
+                />
+              </mat-form-field>
+              <small
+                *ngFor="let error of form.getErrors('name')"
+                class="mat-text-warn"
+                >{{ error.msg | translate: error.value }}</small
+              >
+
+              <mat-form-field class="pt-1">
+                <input
+                  matInput
+                  placeholder="{{ 'SIGNUP.LAST_NAME' | translate }}"
+                  formControlName="lastName"
+                  type="text"
+                />
+              </mat-form-field>
+              <small
+                *ngFor="let error of form.getErrors('lastName')"
+                class="mat-text-warn"
+                >{{ error.msg | translate: error.value }}</small
+              >
+
+              <mat-form-field class="pt-1">
+                <input
+                  matInput
+                  placeholder="{{ 'SIGNUP.BIRTHDATE' | translate }}"
+                  formControlName="birthDate"
+                  [matDatepicker]="pickerBirthDay"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="pickerBirthDay"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #pickerBirthDay></mat-datepicker>
+              </mat-form-field>
+              <small
+                *ngFor="let error of form.getErrors('birthDate')"
+                class="mat-text-warn"
+                >{{ error.msg | translate: error.value }}</small
+              >
+
+              <button
+                class="mt-1"
+                color="primary"
+                mat-raised-button
+                type="button"
+                [appProgressButton]="loading$ | async"
+                [disabled]="loading$ | async"
+                (click)="onSubmit()"
+              >
+                <span class="button-text" translate>SIGNUP.REGISTER</span>
+                <mat-progress-spinner
+                  mode="indeterminate"
+                  [diameter]="18"
+                ></mat-progress-spinner>
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

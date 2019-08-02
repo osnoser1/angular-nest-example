@@ -3,8 +3,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Observable } from 'rxjs';
 
-import { Todo } from '@angular-nest/data';
-
 @Component({
   selector: 'angular-nest-root',
   template: `
@@ -12,8 +10,6 @@ import { Todo } from '@angular-nest/data';
   `,
 })
 export class AppComponent {
-  todos: Observable<Todo[]>;
-
   constructor(translate: TranslateService) {
     translate.addLangs(['es', 'en']);
     translate.setDefaultLang('es');

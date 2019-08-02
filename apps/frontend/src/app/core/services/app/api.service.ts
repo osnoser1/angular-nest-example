@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpResponse, HttpEvent } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpResponse,
+  HttpEvent,
+} from '@angular/common/http';
 
 import { Store } from '@ngrx/store';
 import { Observable, throwError } from 'rxjs';
@@ -25,10 +30,18 @@ export class ApiService {
   ): Observable<T> {
     return this.http
       .delete<T>(`${this.host}${this.host ? '/' : ''}${url}`, options)
-      .pipe(catchError(error => this.handleError(error, showValidationErrorMessage)));
+      .pipe(
+        catchError(error =>
+          this.handleError(error, showValidationErrorMessage),
+        ),
+      );
   }
 
-  public get<T>(url: string, option?: RequestOptions): Observable<T>;
+  public get<T>(
+    url: string,
+    option?: RequestOptions,
+    showValidationErrorMessage?: boolean,
+  ): Observable<T>;
 
   public get<T>(
     url: string,
@@ -40,11 +53,16 @@ export class ApiService {
     option?: RequestOptions & { responseType: 'arraybuffer' },
   ): Observable<ArrayBuffer>;
 
-  public get(url: string, option?: RequestOptions & { responseType: 'blob' }): Observable<Blob>;
+  public get(
+    url: string,
+    option?: RequestOptions & { responseType: 'blob' },
+  ): Observable<Blob>;
 
   public get(
     url: string,
-    option?: RequestOptions & { responseType: 'blob' } & { observe: 'response' },
+    option?: RequestOptions & { responseType: 'blob' } & {
+      observe: 'response';
+    },
   ): Observable<HttpResponse<Blob>>;
 
   public get(
@@ -52,10 +70,15 @@ export class ApiService {
     option?: RequestOptions & { observe?: 'body' | 'events' | 'response' } & {
       responseType?: 'blob' | 'arraybuffer';
     },
+    showValidationErrorMessage = true,
   ): Observable<any> {
     return this.http
       .get(`${this.host}${this.host ? '/' : ''}${url}`, option)
-      .pipe(catchError(error => this.handleError(error)));
+      .pipe(
+        catchError(error =>
+          this.handleError(error, showValidationErrorMessage),
+        ),
+      );
   }
 
   public patch<T>(
@@ -78,7 +101,9 @@ export class ApiService {
   public post<T>(
     url: string,
     body: any,
-    options?: RequestOptions & { responseType: 'blob' } & { observe: 'response' },
+    options?: RequestOptions & { responseType: 'blob' } & {
+      observe: 'response';
+    },
     showValidationErrorMessage?: boolean,
   ): Observable<HttpResponse<Blob>>;
 
@@ -97,16 +122,27 @@ export class ApiService {
   ): Observable<T> {
     return this.http
       .post<T>(`${this.host}${this.host ? '/' : ''}${url}`, body, options)
-      .pipe(catchError(error => this.handleError(error, showValidationErrorMessage)));
+      .pipe(
+        catchError(error =>
+          this.handleError(error, showValidationErrorMessage),
+        ),
+      );
   }
 
-  public put<T>(url: string, body: any, options?: RequestOptions): Observable<T> {
+  public put<T>(
+    url: string,
+    body: any,
+    options?: RequestOptions,
+  ): Observable<T> {
     return this.http
       .put<T>(`${this.host}${this.host ? '/' : ''}${url}`, body, options)
       .pipe(catchError(error => this.handleError(error)));
   }
 
-  private handleError(err: HttpErrorResponse, showValidationErrorMessage?: boolean) {
+  private handleError(
+    err: HttpErrorResponse,
+    showValidationErrorMessage?: boolean,
+  ) {
     if (err.error instanceof Error) {
       // A client-side or network error occurred. Handle it accordingly.
       console.log('An error occurred:', err.error.message);
@@ -125,10 +161,14 @@ export class ApiService {
           error: { ...err.error, title: 'MESSAGES.LOGIN_EXPIRED' },
         }),
       );
-    } else if (err.status !== 422 || showValidationErrorMessage) {
+    } else if (
+      (err.status !== 422 && err.status !== 404) ||
+      showValidationErrorMessage
+    ) {
       this.store.dispatch(
         globalErrorActions.addGlobalError({
-          error: (typeof err.error !== 'string' && { ...err.error }) || err.error,
+          error:
+            (typeof err.error !== 'string' && { ...err.error }) || err.error,
         }),
       );
     }
