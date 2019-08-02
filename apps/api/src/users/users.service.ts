@@ -12,7 +12,7 @@ export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
   create(dto: CreateUserDto) {
-    return this.getByDocument({ document: dto.document }).pipe(
+    return this.getByDocument({ document: `${dto.document}` }).pipe(
       switchMap(user =>
         user
           ? throwError(new ConflictException())
@@ -22,6 +22,6 @@ export class UsersService {
   }
 
   getByDocument(params: GetByDocumentParams) {
-    return this.usersRepository.getByDocument(params.document);
+    return this.usersRepository.getByDocument(Number(params.document));
   }
 }

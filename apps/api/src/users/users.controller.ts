@@ -25,6 +25,10 @@ export class UsersController {
   @Get('document/:document') getByDocument(
     @Param() params: GetByDocumentParams,
   ) {
+    if (!/^\d+$/.test(params.document)) {
+      throw new NotFoundException();
+    }
+
     return this.usersService
       .getByDocument(params)
       .pipe(

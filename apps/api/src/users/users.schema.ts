@@ -1,11 +1,6 @@
 import * as mongoose from 'mongoose';
 
-export interface User {
-  document: number;
-  name: string;
-  lastName: string;
-  birthDate: string;
-}
+import { User } from '@angular-nest/data';
 
 export interface UserDocument extends User, mongoose.Document {}
 

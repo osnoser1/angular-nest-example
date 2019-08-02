@@ -4,7 +4,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { from, Subject } from 'rxjs';
 
-import { UserCollectionName, UserDocument, User } from './users.schema';
+import { User } from '@angular-nest/data';
+import { UserCollectionName, UserDocument } from './users.schema';
 
 @Injectable()
 export class UsersRepository {
