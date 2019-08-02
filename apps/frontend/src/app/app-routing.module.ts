@@ -14,6 +14,10 @@ const routes: Routes = [
     },
     loadChildren: './private/private.module#PrivateModule',
   },
+  {
+    path: 'session',
+    loadChildren: './session/session.module#SessionModule',
+  },
   { path: '**', redirectTo: 'private/dashboard' },
 ];
 

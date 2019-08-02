@@ -15,7 +15,7 @@ type GlobalErrorActions = typeof all;
 export interface ErrorState extends ValidationError {}
 
 const initialState: ErrorState = {
-  status: -1,
+  statusCode: -1,
   title: '',
   'invalid-params': [],
 };
