@@ -27,6 +27,12 @@ const MENUITEMS: Menu[] = [
     type: 'link',
     icon: 'home',
   },
+  {
+    state: 'credit-request/new',
+    name: 'CREDIT_REQUEST_FORM.MENU_ITEM',
+    type: 'link',
+    icon: 'card_membership',
+  },
 ];
 
 @Injectable({

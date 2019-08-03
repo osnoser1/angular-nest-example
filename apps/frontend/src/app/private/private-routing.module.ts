@@ -19,6 +19,16 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: '',
+    component: FullLayoutComponent,
+    children: [
+      {
+        path: 'credit-request',
+        loadChildren: '../credit-request/credit-request.module#CreditRequestModule',
+      },
+    ],
+  },
 ];
 
 @NgModule({
