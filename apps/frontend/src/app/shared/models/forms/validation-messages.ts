@@ -4,6 +4,7 @@ export const Validation = {
   email: () => ({ email: 'VALIDATION.EMAIL' }),
   gte: (val: number) => () => ({ key: 'gte', value: 'VALIDATION.GTE', val }),
   gt: (val: number) => () => ({ key: 'gt', value: 'VALIDATION.GT', val }),
+  lt: (val: number) => () => ({ key: 'lt', value: 'VALIDATION.LT', val }),
   required: () => ({ required: 'VALIDATION.REQUIRED' }),
   invalidNumber: () => ({ invalidNumber: 'VALIDATION.INVALID_NUMBER' }),
   minLength: (length: number) => () => ({
@@ -25,6 +26,7 @@ export const Validation = {
   }),
   notFound: () => ({ notFound: 'VALIDATION.NOT_FOUND' }),
   loading: () => ({ loading: 'VALIDATION.LOADING' }),
+  maxDate: () => ({ maxDate: 'VALIDATION.MAX_DATE' }),
 };
 
 const validationFunction = (

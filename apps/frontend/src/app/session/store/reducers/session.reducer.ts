@@ -7,7 +7,6 @@ import * as fromSession from '../actions/session.actions';
 export interface SessionState {
   loading: boolean;
   resetForm: boolean;
-  user?: User;
 }
 
 export const sessionState: SessionState = {
@@ -24,7 +23,6 @@ export const sessionReducer = createReducer<SessionState>(
   })),
   on(fromSession.registerUserSuccess, (state, { user }) => ({
     ...state,
-    user,
     loading: false,
   })),
   on(fromSession.resetForm, (state, { reset }) => ({

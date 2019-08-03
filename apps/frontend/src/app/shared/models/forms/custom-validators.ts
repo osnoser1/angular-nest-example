@@ -54,4 +54,9 @@ export class CustomValidators {
       ? { requiredDate: true }
       : null;
   }
+
+  static maxDate(date: Date) {
+    return (control: AbstractControl) =>
+      !control.value || control.value >= date ? { maxDate: true } : null;
+  }
 }

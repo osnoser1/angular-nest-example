@@ -1,0 +1,95 @@
+<mat-card fxLayout class="pb-0">
+  <mat-card-content fxLayout="column" fxFlex="100" [style.display]="'block'">
+    <h1 translate>CREDIT_REQUEST_FORM.TITLE</h1>
+    <form [formGroup]="form.group">
+      <div [ngClass.gt-xs]="'pb-1'">
+        <div fxLayout="column">
+          <mat-form-field [style.width.px]="400">
+            <input
+              formControlName="companyName"
+              matInput
+              placeholder="{{ 'CREDIT_REQUEST_FORM.COMPANY_NAME' | translate }}"
+              required
+            />
+          </mat-form-field>
+          <small
+            *ngFor="let error of form.getErrors('companyName')"
+            class="mat-text-warn"
+            >{{ error.msg | translate: error.value }}</small
+          >
+        </div>
+
+        <div fxLayout="column">
+          <mat-form-field [style.width.px]="400">
+            <input
+              formControlName="companyNit"
+              matInput
+              placeholder="{{ 'CREDIT_REQUEST_FORM.COMPANY_NIT' | translate }}"
+              required
+            />
+          </mat-form-field>
+          <small
+            *ngFor="let error of form.getErrors('companyNit')"
+            class="mat-text-warn"
+            >{{ error.msg | translate: error.value }}</small
+          >
+        </div>
+
+        <div fxLayout="column">
+          <mat-form-field [style.width.px]="400">
+            <input
+              formControlName="salary"
+              matInput
+              placeholder="{{ 'CREDIT_REQUEST_FORM.SALARY' | translate }}"
+              required
+            />
+          </mat-form-field>
+          <small
+            *ngFor="let error of form.getErrors('salary')"
+            class="mat-text-warn"
+            >{{ error.msg | translate: error.value }}</small
+          >
+        </div>
+
+        <div fxLayout="column">
+          <mat-form-field [style.width.px]="400">
+            <input
+              formControlName="startDate"
+              matInput
+              placeholder="{{ 'CREDIT_REQUEST_FORM.START_DATE' | translate }}"
+              required
+              [matDatepicker]="pickerStart"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerStart"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerStart></mat-datepicker>
+          </mat-form-field>
+          <small
+            *ngFor="let error of form.getErrors('startDate')"
+            class="mat-text-warn"
+            >{{ error.msg | translate: error.value }}</small
+          >
+        </div>
+
+        <div class="mt-1">
+          <button
+            color="primary"
+            mat-raised-button
+            type="button"
+            [appProgressButton]="loading$ | async"
+            [disabled]="loading$ | async"
+            (click)="onSubmit()"
+          >
+            <span class="button-text" translate>BUTTON_ACTIONS.OK</span>
+            <mat-progress-spinner
+              mode="indeterminate"
+              [diameter]="18"
+            ></mat-progress-spinner>
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
